@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="mains.js" defer></script> <!-- Incluye el archivo JavaScript aquí -->
+</head>
+
+<body>
+    <div class="login-container" id="login-container">
+        <div class="logo">
+            <h1>Bienvenido</h1>
+        </div>
+        <form class="login-form" id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+        <div class="footer">
+            <p>¿Olvidaste tu contraseña? <a href="#">Recuperar</a></p>
+        </div>
+    </div>
+
+    <!-- Sección de monitoreo, oculta inicialmente -->
+    <div class="container" id="monitor-section" style="display: none;">
+        <h1 class="monitor-title">Monitor de Temperatura ESP32</h1>
+        <div class="data">
+            <p class="data-item">Fecha y hora actual: <span id="fecha-hora"></span></p>
+            <p class="data-item">Temperatura Sensor1: <span id="temperatura1"> °C</span></p>
+            <p class="data-item">Estado del logging: <span id="estado-loggin"></span></p>
+        </div>
+
+        <div class="buttons-wrapper">
+            <button class="btn" onclick="guardarDato()">Guardar Dato</button>
+            <button class="btn" onclick="mostrarPestanaTemperaturas()">Ver Temperaturas</button>
+            <button class="btn" onclick="borrarTodosLosDatos()">Borrar Datos</button>
+        </div>
+    </div>
+
+    <!-- Nueva sección para mostrar las temperaturas en otra pestaña -->
+    <div class="container" id="temperaturas-section" style="display: none;">
+        <h1>Lista de Temperaturas Guardadas</h1>
+        <ul id="listaTemperaturas"></ul>
+        <button class="btn" onclick="volverAlMonitor()">Volver al Monitor</button>
+    </div>
+</body>
+
+</html>
